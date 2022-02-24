@@ -2,7 +2,9 @@
   "extends": "@tsconfig/node16-strictest-esm/tsconfig.json",
   "compilerOptions": {
     "outDir": "./dist",
-    "baseUrl": "./src"
+    "baseUrl": "./src",
+    "moduleResolution": "node",
+    
   },
   "include": ["./src/**/*.ts"],
   "exclude": ["./src/**/*.spec.ts"]
