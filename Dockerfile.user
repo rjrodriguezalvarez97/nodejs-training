@@ -1,0 +1,7 @@
+FROM nodejs-training-root:latest
+
+USER jtservice
+
+EXPOSE 3000
+ENTRYPOINT [ "npm" ]
+CMD ["run", "dev"]
