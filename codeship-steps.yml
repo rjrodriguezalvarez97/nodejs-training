@@ -1,0 +1,15 @@
+- name: "Build"
+  type: serial
+  exclude: ^(production|rollback)$
+  steps:
+    - name: "Build :: NodeJS Training"
+      service: nodejs-training-root
+      command: run build
+- name: "Linter and Tests"
+  service: nodejs-training-root
+  type: parallel
+  steps:
+    - name: "Run Linter"
+      command: run lint
+    - name: "Run tests"
+      command: test
