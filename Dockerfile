@@ -12,12 +12,14 @@ RUN mkdir /usr/local/jtservice \
 
 WORKDIR /usr/local/jtservice/
 
-RUN mkdir -p tmp tmp/cache && chown -R jtservice tmp
+RUN mkdir -p src src/coverage && chown -R jtservice src
 # RUN apk add --no-cache ca-certificates libcurl libressl libxml2 libxslt \
 #   postgresql-libs postgresql-client tzdata g++ make
 
-COPY package*.json .
-COPY tsconfig.json .
+COPY package*.json ./
+COPY tsconfig.json ./
+COPY jest.config.js ./
+COPY .eslint* ./
 
 RUN npm install
 # Root files
@@ -40,7 +42,7 @@ RUN npm install
 # COPY test test
 # COPY lib lib
 # COPY app app
-COPY src src
+COPY src/ src/
 
 RUN npm run build
 

@@ -5,6 +5,9 @@ module.exports = {
   rootDir: "src",
   collectCoverage: true,
   collectCoverageFrom: ["**/*.ts"],
+  coveragePathIgnorePatterns: [
+    "<rootDir>/index.ts",
+],
   coverageThreshold: {
     global: {
       functions: 80,
