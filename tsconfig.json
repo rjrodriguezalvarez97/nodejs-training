@@ -4,8 +4,14 @@
     "outDir": "./dist",
     "baseUrl": "./src",
     "moduleResolution": "node",
-    
+    "paths": {
+      "@infra/*": ["infra/*"],
+      "@domain/*": ["domain/*"],
+      "@application/*": ["application/*"]
+    },
+    "module": "commonjs",
   },
   "include": ["./src/**/*.ts"],
-  "exclude": ["./src/**/*.spec.ts"]
+  "exclude": ["./src/**/*.spec.ts"],
+
 }
