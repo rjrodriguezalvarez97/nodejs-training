@@ -1,10 +1,11 @@
 import express from "express";
 import rollbar from "@infra/rollbar";
 import router from "@infra/express/router";
+import type { ServerInterface, ServerApp } from "@infra/interfaces/ServerInterface";
 
-export default class Server {
+export default class Server implements ServerInterface {
   private port: string;
-  private app: express.Application;
+  private app: ServerApp;
   private server: ReturnType<typeof express.application.listen> | undefined;
 
   constructor(port: string) {
@@ -27,7 +28,7 @@ export default class Server {
     this.server?.close();
   }
 
-  getApp() {
+  getApp(): ServerApp {
     return this.app;
   }
 }
