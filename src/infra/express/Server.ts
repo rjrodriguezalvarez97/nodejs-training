@@ -5,7 +5,8 @@ import router from "@infra/express/router";
 export default class Server {
   private port: string;
   private app: express.Application;
-  
+  private server: ReturnType<typeof express.application.listen> | undefined;
+
   constructor(port: string) {
     this.port = port;
     this.app = express();
@@ -17,8 +18,16 @@ export default class Server {
 
     this.app.use(router);
 
-    this.app.listen(this.port, () => {
+    this.server = this.app.listen(this.port, () => {
       console.log(`Server started listening on port: http://localhost:${this.port}`);
     });
+  }
+
+  close() {
+    this.server?.close();
+  }
+
+  getApp() {
+    return this.app;
   }
 }

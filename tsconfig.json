@@ -12,6 +12,4 @@
     "module": "commonjs",
   },
   "include": ["./src/**/*.ts"],
-  "exclude": ["./src/**/*.spec.ts"],
-
 }
