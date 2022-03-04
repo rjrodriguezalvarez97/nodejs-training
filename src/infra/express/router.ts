@@ -3,8 +3,15 @@ import userRoutes from "@infra/express/routes/user";
 const router = express.Router();
 
 // define the home page route
-router.get("/", async (_req, res) => {
-  res.json({ hello: "world" });
+router.get("/", (_req, res) => {
+  res.json({ message: "API under construction" });
+});
+
+router.get("/json", (_req, res) => {
+  res.json({
+    name: "edgar",
+    occupation: "developer"
+  });
 });
 
 router.use("/users", userRoutes);
