@@ -1,7 +1,15 @@
 export interface User {
-  id: number;
+  id: UserId;
   name: string;
   availability: string;
-  email: number;
+  email: string;
   country: string;
 }
+
+export type UserId = string;
+
+export enum UserAvailability {
+  AVAILABLE = "available",
+  UNAVAILABLE = "unavailable"
+}
+
