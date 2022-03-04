@@ -16,17 +16,61 @@ describe("Router test suite", () => {
     server.close();
   });
 
-  it("Should get the homepage", async () => {
-    const response = await request(app).get("/").set("Accept", "application/json");
-    expect(response.headers["content-type"]).toMatch(/json/);
-    expect(response.status).toEqual(200);
-    expect(response.body.hello).toEqual("world");
+  ///// BASIC ROUTES /////
+  describe("Basic routes test suite", () => {
+    it("Should get / endpoint", async () => {
+      const response = await request(app).get("/").set("Accept", "application/json");
+      expect(response.headers["content-type"]).toMatch(/json/);
+      expect(response.status).toEqual(200);
+      expect(response.body.message).toEqual("API under construction");
+    });
+
+    it("Should get the /json endpoint", async () => {
+      const response = await request(app).get("/json").set("Accept", "application/json");
+      const expected = {
+        name: "edgar",
+        occupation: "developer"
+      };
+
+      expect(response.headers["content-type"]).toMatch(/json/);
+      expect(response.status).toEqual(200);
+      expect(response.body).toEqual(expected);
+    });
+
+    it("Should get the /query endpoint", async () => {
+      const response = await request(app)
+        .get("/query")
+        .set("Accept", "application/json")
+        .query({ name: "ricky", occupation: "tester" });
+
+      const expected = {
+        name: "ricky",
+        occupation: "tester"
+      };
+
+      expect(response.headers["content-type"]).toMatch(/json/);
+      expect(response.status).toEqual(200);
+      expect(response.body).toEqual(expected);
+    });
+
+    it("Should get the /profile endpoint", async () => {
+      const response = await request(app)
+        .get("/profile")
+        .set("Accept", "application/json");
+        
+      expect(response.status).toEqual(302);
+      expect(response.headers["location"]).toMatch(/json/);
+    });
   });
 
-  it("Should get the homepage of users", async () => {
-    const response = await request(app).get("/users").set("Accept", "application/json");
-    expect(response.headers["content-type"]).toMatch(/json/);
-    expect(response.status).toEqual(200);
-    expect(response.body.hello).toEqual("users");
+  ///// USER ROUTES /////
+  describe("User routes test suite", () => {
+    it("Should get the /users endpoint", async () => {
+      const response = await request(app).get("/users").set("Accept", "application/json");
+
+      expect(response.headers["content-type"]).toMatch(/json/);
+      expect(response.status).toEqual(200);
+      expect(response.body.hello).toEqual("users");
+    });
   });
 });
