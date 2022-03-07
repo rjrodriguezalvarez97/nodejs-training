@@ -57,7 +57,7 @@ describe("Router test suite", () => {
       const response = await request(app)
         .get("/profile")
         .set("Accept", "application/json");
-        
+
       expect(response.status).toEqual(302);
       expect(response.headers["location"]).toMatch(/json/);
     });
@@ -71,6 +71,18 @@ describe("Router test suite", () => {
       expect(response.headers["content-type"]).toMatch(/json/);
       expect(response.status).toEqual(200);
       expect(response.body.hello).toEqual("users");
+    });
+
+    it("Should post the /users endpoint", async () => {
+      const data = { ricky: "soy yo" };
+      const response = await request(app)
+        .post("/users")
+        .send(data)
+        .set("Accept", "application/json");
+
+      expect(response.headers["content-type"]).toMatch(/json/);
+      expect(response.status).toEqual(200);
+      expect(response.body).toEqual(data);
     });
   });
 });
