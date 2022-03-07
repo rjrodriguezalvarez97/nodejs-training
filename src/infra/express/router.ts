@@ -1,6 +1,6 @@
 import express from "express";
-import userRoutes from "@infra/express/routes/user";
-import RootController from "@infra/express/controllers/root/RootController";
+import userRoutes from "@infra/express/routes/user.routes";
+import RootController from "@infra/express/controllers/Root.controller";
 const router = express.Router();
 
 // define the home page route
