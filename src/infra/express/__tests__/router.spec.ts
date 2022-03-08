@@ -81,7 +81,6 @@ describe("Router test suite", () => {
 
       expect(response.headers["content-type"]).toMatch(/json/);
       expect(response.status).toEqual(200);
-      expect(response.body.hello).toEqual("users");
     });
 
     it("Should post the /users endpoint", async () => {
@@ -93,7 +92,6 @@ describe("Router test suite", () => {
       expect(response.headers["content-type"]).toMatch(/json/);
 
       expect(response.status).toEqual(200);
-      expect(response.body).toEqual(data);
     });
   });
 });

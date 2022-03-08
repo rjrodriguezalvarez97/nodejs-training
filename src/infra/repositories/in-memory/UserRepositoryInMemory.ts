@@ -12,7 +12,6 @@ export default class UserRepositoryInMemory implements UserRepositoryInterface {
     return this.users;
   }
   create(user: User): void {
-    console.log("Creando usuario");
     this.users.push(user);
   }
   delete(userId: UserId): void {

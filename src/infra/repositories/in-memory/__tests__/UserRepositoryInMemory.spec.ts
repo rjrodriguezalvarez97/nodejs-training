@@ -35,6 +35,16 @@ describe("User repository in memory test suite", () => {
     expect(result).toEqual(expected);
   });
 
+  it("Should get a user by id", () => {
+    userRepository = new UserRepositoryInMemory([user]);
+
+    const expected = user;
+    const result = userRepository.getById(user.id);
+    const notFound = userRepository.getById("badId");
+    expect(result).toEqual(expected);
+    expect(notFound).toEqual(undefined);
+  });
+
   it("Should delete a user", () => {
     userRepository = new UserRepositoryInMemory([user]);
     const expected: User[] = [];

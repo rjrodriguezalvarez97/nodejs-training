@@ -21,7 +21,6 @@ export default class UserUseCases {
   }
 
   create(user: User) {
-    console.log("hola?");
     return this.createUser.run(user);
   }
 

@@ -7,13 +7,10 @@ export default class UserController {
 
   constructor(userRepository: UserRepositoryInterface) {
     this.userUseCases = new UserUseCases(userRepository);
-    console.log(this.userUseCases);
-    console.log(userRepository);
   }
 
   createUser(req: Request, res: Response) {
     const user = this.userUseCases.create(req.body);
-    console.log(this);
     res.json(user);
   }
 
