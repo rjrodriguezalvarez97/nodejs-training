@@ -12,6 +12,7 @@ export default class UserRepositoryInMemory implements UserRepositoryInterface {
     return this.users;
   }
   create(user: User): void {
+    console.log("Creando usuario");
     this.users.push(user);
   }
   delete(userId: UserId): void {
@@ -24,5 +25,11 @@ export default class UserRepositoryInMemory implements UserRepositoryInterface {
       this.users[userIndex] = user;
     }
     return user;
+  }
+
+  getById(userId: UserId) {
+    const userIndex = this.users.findIndex((element) => element.id === userId);
+
+    return userIndex >= 0 ? this.users[userIndex] : undefined;
   }
 }

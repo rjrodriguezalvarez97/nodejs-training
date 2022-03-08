@@ -1,13 +1,24 @@
 import request from "supertest";
 import type express from "express";
 import Server from "@infra/express/Server";
+import type RepositoryInterface from "@infra/interfaces/RepositoryInterface";
+import type UserRepositoryInterface from "@application/user/repository/UserRepositoryInterface";
 
 describe("Router test suite", () => {
   let app: express.Application;
   let server: Server;
-
+  const userRepository: UserRepositoryInterface = {
+    getAll: jest.fn(),
+    create: jest.fn(),
+    delete: jest.fn(),
+    update: jest.fn(),
+    getById: jest.fn()
+  };
+  const repository: RepositoryInterface = {
+    userRepository: userRepository
+  };
   beforeAll(() => {
-    server = new Server("3004");
+    server = new Server("3004", repository);
     server.init();
     app = server.getApp();
   });
@@ -79,8 +90,8 @@ describe("Router test suite", () => {
         .post("/users")
         .send(data)
         .set("Accept", "application/json");
-
       expect(response.headers["content-type"]).toMatch(/json/);
+
       expect(response.status).toEqual(200);
       expect(response.body).toEqual(data);
     });
