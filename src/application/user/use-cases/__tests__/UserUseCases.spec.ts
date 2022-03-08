@@ -1,4 +1,3 @@
-// import GetUsersUsecase from "@application/user/use-cases/GetUsers";
 import type UserRepositoryInterface from "@application/user/repository/UserRepositoryInterface";
 import type { User } from "@domain/User";
 import UserUseCases from "../UserUseCases";

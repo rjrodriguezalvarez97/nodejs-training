@@ -31,6 +31,7 @@ export default class Server implements ServerInterface {
     this.server?.close();
   }
 
+  
   getApp(): ServerApp {
     return this.app;
   }
