@@ -25,4 +25,10 @@ export default class UserRepositoryInMemory implements UserRepositoryInterface {
     }
     return user;
   }
+
+  getById(userId: UserId) {
+    const userIndex = this.users.findIndex((element) => element.id === userId);
+
+    return userIndex >= 0 ? this.users[userIndex] : undefined;
+  }
 }

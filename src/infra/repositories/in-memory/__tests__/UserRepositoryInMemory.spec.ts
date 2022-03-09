@@ -1,4 +1,4 @@
-import UserRepositoryInMemory from "@infra/repositories/InMemory/UserRepositoryInMemory";
+import UserRepositoryInMemory from "@infra/repositories/in-memory/UserRepositoryInMemory";
 import { UserAvailability } from "@domain/User";
 import type UserRepositoryInterface from "@application/user/repository/UserRepositoryInterface";
 import type { User, UserId } from "@domain/User";
@@ -33,6 +33,16 @@ describe("User repository in memory test suite", () => {
     const result = userRepository.getAll();
 
     expect(result).toEqual(expected);
+  });
+
+  it("Should get a user by id", () => {
+    userRepository = new UserRepositoryInMemory([user]);
+
+    const expected = user;
+    const result = userRepository.getById(user.id);
+    const notFound = userRepository.getById("badId");
+    expect(result).toEqual(expected);
+    expect(notFound).toEqual(undefined);
   });
 
   it("Should delete a user", () => {
